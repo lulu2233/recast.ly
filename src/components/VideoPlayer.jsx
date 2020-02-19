@@ -1,11 +1,15 @@
-var VideoPlayer = (props) => (
+import VideoList from '../../src/components/VideoList.js';
+import VideoListEntry from '../../src/components/VideoListEntry.js';
+
+var VideoPlayer = ({video}) => (
   <div className="video-player">
     <div className="embed-responsive embed-responsive-16by9">
-      <iframe className="embed-responsive-item" src={'https://www.youtube.com' + props.videos.id.videoId} allowFullScreen></iframe>
+      {console.log(video)}
+      <iframe className="embed-responsive-item" src={'https://www.youtube.com/embed/' + video.id.videoId} allowFullScreen></iframe>
     </div>
     <div className="video-player-details">
-      <h3>{props.video.snippet.title}</h3>
-      <div>{props.video.snippet.description}</div>
+      <h3>{video.snippet.title}</h3>
+      <div>{video.snippet.description}</div>
     </div>
   </div>
 );

@@ -1,24 +1,49 @@
 import VideoListEntry from '../../src/components/VideoListEntry.js';
 import VideoList from '../../src/components/VideoList.js';
 import VideoPlayer from '../../src/components/VideoPlayer.js';
+import exampleVideoData from '../../src/data/exampleVideoData.js';
+import Search from '../../src/components/Search.js';
 
-var App = () => (
-  <div>
-    <nav className="navbar">
-      <div className="col-md-6 offset-md-3">
-        <div><h5><em>search</em> view goes here</h5></div>
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      videoList: exampleVideoData,
+      currentVideo: exampleVideoData[0]
+    };
+  }
+
+  // onCLick set currentVideo to clicked video
+  handleClick(event, video) {
+    event.preventDefault();
+    this.setState ({
+      currentVideo: video
+    });
+
+  }
+
+  render() {
+    return (
+      <div>
+        <nav className="navbar">
+          <div className="col-md-6 offset-md-3">
+            <div><h5><em> <Search /></em></h5></div>
+          </div>
+        </nav>
+        <div className="row">
+          <div className="col-md-7">
+            <div><h5><em><VideoPlayer video={this.state.currentVideo}/></em></h5></div>
+          </div>
+          <div className="col-md-5">
+            <div><h5><em><VideoList videos={this.state.videoList} handleClick={this.handleClick.bind(this)}/></em></h5></div>
+          </div>
+        </div>
       </div>
-    </nav>
-    <div className="row">
-      <div className="col-md-7">
-        <div><h5><em>VideoPlayer</em> <VideoPlayer/></h5></div>
-      </div>
-      <div className="col-md-5">
-        <div><h5><em>VideoList</em> view goes here</h5></div>
-      </div>
-    </div>
-  </div>
-);
+    );
+  }
+
+
+}
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
