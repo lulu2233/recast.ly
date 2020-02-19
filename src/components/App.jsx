@@ -3,14 +3,16 @@ import VideoList from '../../src/components/VideoList.js';
 import VideoPlayer from '../../src/components/VideoPlayer.js';
 import exampleVideoData from '../../src/data/exampleVideoData.js';
 import Search from '../../src/components/Search.js';
+import searchYouTube from '../../src/lib/searchYouTube.js';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      videoList: exampleVideoData,
+      videoList: [],
       currentVideo: exampleVideoData[0]
     };
+    // searchYouTube()
   }
 
   // onCLick set currentVideo to clicked video
@@ -19,7 +21,6 @@ class App extends React.Component {
     this.setState ({
       currentVideo: video
     });
-
   }
 
   render() {
