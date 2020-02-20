@@ -17,7 +17,7 @@ class App extends React.Component {
   }
   //get youtube videos by query
   componentDidMount() {
-    this.getYoutubeVideos('cat');
+    this.getYoutubeVideos('cats');
   }
 
 
@@ -25,17 +25,15 @@ class App extends React.Component {
     console.log(this);
     // console.log(searchYouTube);
     var options = {
-
       key: YOUTUBE_API_KEY,
       query: query
     };
-    searchYouTube(options, data => {
+    this.props.searchYouTube(options, data => {
       console.log('test2' + data);
       this.setState({
         videoList: data,
         currentVideo: data[0]
       });
-
     });
   }
 
